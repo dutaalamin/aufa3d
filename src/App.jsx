@@ -3,10 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Lenis from 'lenis';
 import ThreeHero from './components/ThreeHero';
 import ProjectDetail from './components/ProjectDetail';
+import Preloader from './components/Preloader';
 
 export default function App() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Initialize Lenis Smooth Scroll
   useEffect(() => {
@@ -58,6 +60,9 @@ export default function App() {
   return (
     <div className="relative min-h-screen bg-white text-neutral-900 selection:bg-black selection:text-white overflow-x-clip font-sans">
       
+      {/* Preloader Screen */}
+      {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
+
       {/* 3D Canvas Background Layer - fixed position */}
       <div className="fixed inset-0 z-0">
         <ThreeHero onSelectProject={navigateToProject} selectedProject={selectedProject} />
