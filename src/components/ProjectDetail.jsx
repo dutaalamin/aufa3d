@@ -24,6 +24,44 @@ export default function ProjectDetail({ project, onBack, onSelectProject }) {
     setShowDetails(true);
   };
 
+  // Listen for scroll down or swipe up gestures on Screen 1 (Preview) to open details page
+  useEffect(() => {
+    if (showDetails) return;
+
+    let touchStartY = 0;
+
+    const handleWheel = (e) => {
+      if (e.deltaY > 0) {
+        setShowDetails(true);
+      }
+    };
+
+    const handleTouchStart = (e) => {
+      touchStartY = e.touches[0].clientY;
+    };
+
+    const handleTouchMove = (e) => {
+      if (!touchStartY) return;
+      const touchEndY = e.touches[0].clientY;
+      const diffY = touchStartY - touchEndY; // positive = swipe up (scroll down)
+
+      if (diffY > 15) {
+        touchStartY = 0;
+        setShowDetails(true);
+      }
+    };
+
+    window.addEventListener('wheel', handleWheel, { passive: true });
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchmove', handleTouchMove, { passive: true });
+
+    return () => {
+      window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
+    };
+  }, [showDetails, project]);
+
   return (
     <div className="w-full relative z-20 pointer-events-auto">
       
