@@ -56,11 +56,16 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
 
   const selectedProjectRef = useRef(selectedProject);
+  const onSelectProjectRef = useRef(onSelectProject);
   const targetCameraZRef = useRef(11.2);
 
   useEffect(() => {
     selectedProjectRef.current = selectedProject;
   }, [selectedProject]);
+
+  useEffect(() => {
+    onSelectProjectRef.current = onSelectProject;
+  }, [onSelectProject]);
 
   useEffect(() => {
     const container = mountRef.current;
@@ -206,7 +211,9 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
     const handleClick = () => {
       if (selectedProjectRef.current) return;
       if (currentHoveredMesh && currentHoveredMesh.userData.project) {
-        onSelectProject(currentHoveredMesh.userData.project);
+        if (onSelectProjectRef.current) {
+          onSelectProjectRef.current(currentHoveredMesh.userData.project);
+        }
       }
     };
 
@@ -335,7 +342,7 @@ export default function ThreeHero({ onSelectProject, selectedProject }) {
       renderer.dispose();
       document.body.style.cursor = 'default';
     };
-  }, [onSelectProject]);
+  }, []);
 
   return (
     <div className="relative w-full h-screen bg-white overflow-hidden select-none">

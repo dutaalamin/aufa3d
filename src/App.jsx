@@ -35,7 +35,7 @@ export default function App() {
   }, []);
 
   // Smooth page transition handler for selecting projects
-  const navigateToProject = (project) => {
+  const navigateToProject = React.useCallback((project) => {
     setIsTransitioning(true);
     if (window.lenis) window.lenis.stop();
 
@@ -55,7 +55,7 @@ export default function App() {
         if (window.lenis) window.lenis.start();
       }, 150);
     }, 400);
-  };
+  }, []);
 
   return (
     <div className="relative min-h-screen bg-white text-neutral-900 selection:bg-black selection:text-white overflow-x-clip font-sans">
