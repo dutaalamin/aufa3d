@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+@theme {
+  --color-charcoal-light: #f5f5f5;
+  --color-charcoal: #fafafa;
+  --color-charcoal-dark: #f0f0f0;
+  --color-charcoal-deep: #ffffff;
+  
+  --font-sans: 'Inter', sans-serif;
+  --font-display: 'Outfit', sans-serif;
+  
+  --letter-spacing-widest: 0.2em;
+  --letter-spacing-mega: 0.4em;
+}
+
+@utility bg-grid-lines {
+  background-size: 80px 80px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+}
+
+@utility bg-grid-lines-fine {
+  background-size: 20px 20px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.01) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.01) 1px, transparent 1px);
+}
+
+@utility text-glow {
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Custom scrollbar - Light Theme */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fafafa;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e5e5e5;
+  border-radius: 9px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a3a3a3;
+}
+
+/* Lenis smooth scrolling support */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
