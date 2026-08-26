@@ -48,21 +48,13 @@ export default function Preloader({ onComplete }) {
               AUFA
             </h1>
 
-            {/* Subtle Progress Counter & Bar */}
-            <div className="flex flex-col items-center gap-3">
-              {/* Progress Line */}
-              <div className="w-28 sm:w-36 h-[1.5px] bg-neutral-100 overflow-hidden relative rounded-full">
-                <motion.div
-                  className="h-full bg-neutral-900 rounded-full"
-                  style={{ width: `${progress}%` }}
-                  transition={{ ease: 'easeOut' }}
-                />
-              </div>
-
-              {/* Counter Text */}
-              <span className="font-display text-[9px] uppercase tracking-widest text-neutral-400 font-medium">
-                {progress}%
-              </span>
+            {/* Subtle Progress Bar */}
+            <div className="w-28 sm:w-36 h-[1.5px] bg-neutral-100 overflow-hidden relative rounded-full">
+              <motion.div
+                className="h-full bg-neutral-900 rounded-full"
+                style={{ width: `${progress}%` }}
+                transition={{ ease: 'easeOut' }}
+              />
             </div>
           </motion.div>
         </motion.div>
